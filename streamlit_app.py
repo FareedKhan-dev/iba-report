@@ -7,21 +7,15 @@ import plotly.graph_objects as go
 st.set_page_config(layout="wide")
 st.markdown(
         """
-
-        
         <style>
-
-
         [data-testid="stSidebar"] {
                 background-image: url(https://raw.githubusercontent.com/FareedKhan-dev/iba-logo/main/pngwing.com.png);
                 background-size: 200px;
                 background-repeat: no-repeat;
                 background-position: 4px 20px;
             }
-
 @font-face {
   font-family: 'Inter';
-
 @import url('https://github.com/gattadesmond/hugo-foundation6/blob/master/src/assets/fonts/sf-pro/SF-Pro-Display/sf-pro-display_bold.woff2');
 }
 
@@ -91,11 +85,11 @@ data = {
         [3, 2, 3, 14, 20, 29, 18],
         [4, 2, 3, 1, 8, 10, 8]
     ],
-    'Others': [
-        [3, 3, 2, 3, 2, 7, 37],
-        [2, 2, 0, 1, 6, 7, 4],
-        [8, 1, 0, 0, 1, 3, 3]
-    ]
+    # 'Others': [
+    #     [3, 3, 2, 3, 2, 7, 37],
+    #     [2, 2, 0, 1, 6, 7, 4],
+    #     [8, 1, 0, 0, 1, 3, 3]
+    # ]
 }
 
 
@@ -127,8 +121,8 @@ fig1.update_layout(
 )
 
 # Data for the second donut chart
-edu_categories = ['Science', 'Engineering', 'Commerce', 'Medical', 'Other', 'General', 'Others']
-edu_counts = [26694, 20495, 16265, 9091, 2902, 2553, 1778]
+edu_categories = ['Science', 'Engineering', 'Commerce', 'Medical', 'General', 'Others']
+edu_counts = [26694, 20495, 16265, 9091, 2553, 4670]
 
 # Create a DataFrame for the second donut chart
 edu_data = {'Education Category': edu_categories, 'Education Count': edu_counts}
@@ -394,17 +388,17 @@ bachelor_data = [
    {
         "Program": "BBA",
         "Personal Statement Quality": {
-            "Good": 60,
-            "Average": 30,
+            "Good": 70,
+            "Average": 20,
             "Poor": 10
         }
     },
     {
         "Program": "BS (Accounting & Finance)",
         "Personal Statement Quality": {
-            "Good": 25,
-            "Average": 50,
-            "Poor": 25
+            "Good": 65,
+            "Average": 30,
+            "Poor": 5
         }
     },
     {
@@ -418,17 +412,17 @@ bachelor_data = [
     {
         "Program": "BS (Economics & Mathematics)",
         "Personal Statement Quality": {
-            "Good": 35,
-            "Average": 40,
-            "Poor": 25
+            "Good": 60,
+            "Average": 30,
+            "Poor": 10
         }
     },
     {
         "Program": "BS (Economics)",
         "Personal Statement Quality": {
             "Good": 40,
-            "Average": 30,
-            "Poor": 30
+            "Average": 40,
+            "Poor": 20
         }
     },
     {
@@ -442,9 +436,9 @@ bachelor_data = [
     {
         "Program": "BS Mathematics",
         "Personal Statement Quality": {
-            "Good": 20,
-            "Average": 50,
-            "Poor": 30
+            "Good": 50,
+            "Average": 40,
+            "Poor": 10
         }
     },
     # ... Add more bachelor programs data ...
@@ -455,64 +449,64 @@ masters_data = [
      {
         "Program": "MBA Evening",
         "Personal Statement Quality": {
-            "Good": 10,
+            "Good": 60,
             "Average": 25,
-            "Poor": 65
+            "Poor": 15
         }
     },
     {
         "Program": "MBA Executive",
         "Personal Statement Quality": {
-            "Good": 60,
+            "Good": 70,
             "Average": 25,
-            "Poor": 15
+            "Poor": 5
         }
     },
     {
         "Program": "MBA Morning",
         "Personal Statement Quality": {
-            "Good": 40,
-            "Average": 20,
-            "Poor": 40
+            "Good": 60,
+            "Average": 35,
+            "Poor": 5
         }
     },
     {
         "Program": "MS (Computer Science)",
         "Personal Statement Quality": {
-            "Good": 60,
+            "Good": 70,
             "Average": 25,
-            "Poor": 15
+            "Poor": 5
         }
     },
     {
         "Program": "MS (Economics)",
         "Personal Statement Quality": {
-            "Good": 35,
-            "Average": 40,
-            "Poor": 25
+            "Good": 75,
+            "Average": 15,
+            "Poor": 10
         }
     },
     {
         "Program": "MS (Islamic Banking & Finance)",
         "Personal Statement Quality": {
-            "Good": 25,
-            "Average": 30,
-            "Poor": 45
+            "Good": 65,
+            "Average": 25,
+            "Poor": 10
         }
     },
     {
         "Program": "MS (Marketing)",
         "Personal Statement Quality": {
-            "Good": 15,
-            "Average": 40,
-            "Poor": 45
+            "Good": 65,
+            "Average": 20,
+            "Poor": 15
         }
     },
     {
         "Program": "MS (Mathematics)",
         "Personal Statement Quality": {
-            "Good": 60,
-            "Average": 25,
+            "Good": 50,
+            "Average": 35,
             "Poor": 15
         }
     },
@@ -535,17 +529,17 @@ masters_data = [
     {
         "Program": "MS - Finance",
         "Personal Statement Quality": {
-            "Good": 20,
-            "Average": 40,
-            "Poor": 40
+            "Good": 70,
+            "Average": 15,
+            "Poor": 15
         }
     },
     {
         "Program": "MS - Management (Full Time)",
         "Personal Statement Quality": {
-            "Good": 30,
+            "Good": 60,
             "Average": 30,
-            "Poor": 40
+            "Poor": 10
         }
     },
     {
@@ -559,13 +553,12 @@ masters_data = [
     # ... Add more master's programs data ...
 ]
 
-# Create stacked bar plot for a specific program
-def create_program_bar_plot(program_data, title):
+def create_program_donut_chart(program_data, title):
     qualities = list(program_data["Personal Statement Quality"].keys())
     values = list(program_data["Personal Statement Quality"].values())
 
     fig = go.Figure(data=[
-        go.Bar(x=qualities, y=values)
+        go.Pie(labels=qualities, values=values, hole=0.6)  # Set the hole parameter for donut shape
     ])
 
     fig.update_layout(title=title)
@@ -583,11 +576,11 @@ else:
     selected_program = st.sidebar.selectbox("Select a Master's Program", [program["Program"] for program in masters_data])
     selected_program_data = next(program for program in masters_data if program["Program"] == selected_program)
 
-# Create and display the selected program's plot
-# Use Streamlit's layout capabilities to arrange plots side by side
+# Create and display the selected program's donut chart
+# Use Streamlit's layout capabilities to arrange charts side by side
 col1, col2 = st.columns((4,8))
 with col1:
-    st.plotly_chart(create_program_bar_plot(selected_program_data, f"program selected {selected_program}"), use_container_width=True)
+    st.plotly_chart(create_program_donut_chart(selected_program_data, f"Program Selected: {selected_program}"), use_container_width=True)
 with col2:
     st.markdown("<br><br>", unsafe_allow_html=True)
     st.write('Analyzing students personal statements, their emphasized backgrounds, and the chosen programs helps judge how well they match. When these aspects align well, its considered good. But if they dont match perfectly, its labeled as average or even poor, showing the need for clearer connections between their goals and qualifications.')
@@ -607,20 +600,18 @@ with col2:
 ############################################################################################################
 
 
-
-# Sample data for bachelor programs
 bachelor_data = [
     {
         "Program": "BBA",
-        "Good": 60,
-        "Average": 30,
+        "Good": 70,
+        "Average": 20,
         "Poor": 10
     },
     {
         "Program": "BS (Accounting & Finance)",
-        "Good": 25,
-        "Average": 50,
-        "Poor": 25
+        "Good": 65,
+        "Average": 30,
+        "Poor": 5
     },
     {
         "Program": "BS (Computer Science)",
@@ -630,15 +621,15 @@ bachelor_data = [
     },
     {
         "Program": "BS (Economics & Mathematics)",
-        "Good": 35,
-        "Average": 40,
-        "Poor": 25
+        "Good": 60,
+        "Average": 30,
+        "Poor": 10
     },
     {
         "Program": "BS (Economics)",
         "Good": 40,
-        "Average": 30,
-        "Poor": 30
+        "Average": 40,
+        "Poor": 20
     },
     {
         "Program": "BS (Social Sciences)",
@@ -648,43 +639,60 @@ bachelor_data = [
     },
     {
         "Program": "BS Mathematics",
-        "Good": 20,
-        "Average": 50,
-        "Poor": 30
-    }
-    # ... Add more bachelor programs data here ...
+        "Good": 50,
+        "Average": 40,
+        "Poor": 10
+    },
+    # ... Add more bachelor programs data ...
 ]
 
-# Sample data for master's programs
 masters_data = [
-        {
-        "Program": "MS (Computer Science)",
+    {
+        "Program": "MBA Evening",
         "Good": 60,
         "Average": 25,
         "Poor": 15
     },
     {
+        "Program": "MBA Executive",
+        "Good": 70,
+        "Average": 25,
+        "Poor": 5
+    },
+    {
+        "Program": "MBA Morning",
+        "Good": 60,
+        "Average": 35,
+        "Poor": 5
+    },
+    {
+        "Program": "MS (Computer Science)",
+        "Good": 70,
+        "Average": 25,
+        "Poor": 5
+    },
+    {
         "Program": "MS (Economics)",
-        "Good": 35,
-        "Average": 40,
-        "Poor": 25
+        "Good": 75,
+        "Average": 15,
+        "Poor": 10
     },
     {
         "Program": "MS (Islamic Banking & Finance)",
-        "Good": 25,
-        "Average": 30,
-        "Poor": 45
+        "Good": 65,
+        "Average": 25,
+        "Poor": 10
     },
     {
         "Program": "MS (Marketing)",
-        "Good": 15,
-        "Average": 40,
-        "Poor": 45
+        "Good": 65,
+        "Average": 20,
+        "Poor": 15
     },
     {
         "Program": "MS (Mathematics)",
-        "Good": 60,
-        "Average": 25,
+        "Good": 50,
+        "Average": 35,
         "Poor": 15
     },
     {
@@ -701,15 +709,15 @@ masters_data = [
     },
     {
         "Program": "MS - Finance",
-        "Good": 20,
-        "Average": 40,
-        "Poor": 40
+        "Good": 70,
+        "Average": 15,
+        "Poor": 15
     },
     {
         "Program": "MS - Management (Full Time)",
-        "Good": 30,
+        "Good": 60,
         "Average": 30,
-        "Poor": 40
+        "Poor": 10
     },
     {
         "Program": "MS - Management (Part-Time)",
@@ -717,8 +725,9 @@ masters_data = [
         "Average": 35,
         "Poor": 20
     }
-    # ... Add more master's programs data here ...
+    # ... Add more master's programs data ...
 ]
+
 
 # Create stacked bar plots for bachelor and master's programs
 def create_stacked_bar_plot(data, title):
@@ -749,6 +758,93 @@ with col1:
 
 with col2:
     st.plotly_chart(masters_plot, use_container_width=True)
+
+
+
+############################################################################################################
+
+
+
+st.markdown("""---""")
+
+
+# Sample data (replace this with your actual DataFrame)
+# Sample DataFrame
+data = {'offered_program': ['BBA', 'BBA', 'BBA', 'BBA', 'BBA', 'BBA', 'BS (Accounting & Finance)', 'BS (Accounting & Finance)', 'BS (Accounting & Finance)', 'BS (Accounting & Finance)', 'BS (Accounting & Finance)', 'BS (Accounting & Finance)', 'BS (Computer Science)', 'BS (Computer Science)', 'BS (Computer Science)', 'BS (Computer Science)', 'BS (Economics & Mathematics)', 'BS (Economics & Mathematics)', 'BS (Economics & Mathematics)', 'BS (Economics & Mathematics)', 'BS (Economics)', 'BS (Economics)', 'BS (Economics)', 'BS (Economics)', 'BS (Economics)', 'BS (Social Sciences)', 'BS (Social Sciences)', 'BS (Social Sciences)', 'BS (Social Sciences)', 'BS (Social Sciences)', 'BS Mathematics', 'BS Mathematics', 'BS Mathematics', 'BS Mathematics', 'MBA Evening', 'MBA Evening', 'MBA Evening', 'MBA Evening', 'MBA Evening', 'MBA Executive', 'MBA Executive', 'MBA Executive', 'MBA Executive', 'MBA Executive', 'MBA Morning', 'MBA Morning', 'MBA Morning', 'MBA Morning', 'MBA Morning', 'MS (Economics)', 'MS (Economics)', 'MS (Economics)', 'MS (Economics)'], 'discipline_count': [95, 95, 95, 95, 95, 95, 67, 67, 67, 67, 67, 67, 37, 37, 37, 37, 10, 10, 10, 10, 35, 35, 35, 35, 35, 63, 63, 63, 63, 63, 29, 29, 29, 29, 30, 30, 30, 30, 30, 41, 41, 41, 41, 41, 18, 18, 18, 18, 18, 9, 9, 9, 9], 'average_percentage': [84.29221052631578, 84.29221052631578, 84.29221052631578, 84.29221052631578, 84.29221052631578, 84.29221052631578, 84.21388059701489, 84.21388059701489, 84.21388059701489, 84.21388059701489, 84.21388059701489, 84.21388059701489, 86.81675675675675, 86.81675675675675, 86.81675675675675, 86.81675675675675, 79.78500000000001, 79.78500000000001, 79.78500000000001, 79.78500000000001, 83.39571428571428, 83.39571428571428, 83.39571428571428, 83.39571428571428, 83.39571428571428, 81.08873015873014, 81.08873015873014, 81.08873015873014, 81.08873015873014, 81.08873015873014, 82.31206896551727, 82.31206896551727, 82.31206896551727, 82.31206896551727, 78.31400000000002, 78.31400000000002, 78.31400000000002, 78.31400000000002, 78.31400000000002, 69.57390243902441, 69.57390243902441, 69.57390243902441, 69.57390243902441, 69.57390243902441, 74.46555555555557, 74.46555555555557, 74.46555555555557, 74.46555555555557, 74.46555555555557, 68.11222222222221, 68.11222222222221, 68.11222222222221, 68.11222222222221], 'uid_count': [95, 95, 95, 95, 95, 95, 67, 67, 67, 67, 67, 67, 37, 37, 37, 37, 10, 10, 10, 10, 35, 35, 35, 35, 35, 63, 63, 63, 63, 63, 29, 29, 29, 29, 30, 30, 30, 30, 30, 41, 41, 41, 41, 41, 18, 18, 18, 18, 18, 9, 9, 9, 9], 'discipline': ['Commerce', 'Engineering', 'General', 'Medical', 'Others', 'Science', 'Commerce', 'Engineering', 'General', 'Medical', 'Others', 'Science', 'Engineering', 'Medical', 'Others', 'Science', 'Engineering', 'General', 'Others', 'Science', 'Commerce', 'Engineering', 'General', 'Medical', 'Science', 'Art', 'Commerce', 'Engineering', 'Medical', 'Science', 'Engineering', 'General', 'Medical', 'Science', 'Art', 'Engineering', 'Medical', 'Others', 'Science', 'Art', 'Commerce', 'Engineering', 'Medical', 'Science', 'Commerce', 'Engineering', 'Medical', 'Others', 'Science', 'Art', 'Engineering', 'Medical', 'Science'], 'discipline_individual_count': [9, 44, 2, 19, 2, 19, 9, 29, 2, 10, 1, 16, 18, 1, 2, 16, 3, 2, 1, 4, 4, 11, 4, 9, 7, 1, 9, 22, 22, 9, 20, 1, 1, 7, 1, 19, 3, 1, 6, 2, 3, 24, 6, 6, 4, 7, 3, 2, 2, 1, 5, 1, 2]}
+df = pd.DataFrame(data)
+
+# Streamlit app
+st.title('Student Discipline Distribution - Fall 2023')
+
+# Add selectbox to the sidebar
+selected_program = st.sidebar.selectbox('Select Offered Program', df['offered_program'].unique())
+
+# Filter the DataFrame based on selected program
+filtered_df = df[df['offered_program'] == selected_program]
+
+# percentage of discipline
+filtered_df['average_percentage_first'] = filtered_df['discipline_individual_count'] / filtered_df['discipline_individual_count'].sum() * 100
+
+# Create a two-column layout
+col1, col2 = st.columns(2)
+
+# Create a treemap using Plotly Express
+with col1:
+    fig = px.treemap(
+        filtered_df,
+        path=['discipline'],
+        values='average_percentage_first',
+        title=f'Discipline Distribution for {selected_program}',
+    )
+
+    # Define a visually appealing color scale
+    color_scale = ['#3A0066', '#6D33A0', '#9A9AE3', '#7E7FD7', '#B2B2DE', '#C8C8EB', '#B9BAC0']
+    fig.update_traces(marker=dict(colors=color_scale))
+
+    # Show the figure
+    st.plotly_chart(fig, use_container_width=True)
+
+# Display text in the right column
+with col2:
+    st.markdown('<br><br><br><br>', unsafe_allow_html=True)
+    st.write("For the Fall of 2023 at IBA, students joined from various subjects. A graph makes it clear how many came from each field and the percentage they represent. This picture highlights the diversity of students and the importance IBA places on different areas of study. It's a snapshot of how different disciplines contribute to the student community.")
+    st.write(f'The average percentage of {selected_program} students is {round(filtered_df["average_percentage"].mean(), 2)}%.')
+
+
+
+
+st.write("The graph displays the average percentage of students who have enrolled in the program. This average percentage could give us an idea of the type of students who are interested in the program and how much they prioritize it. This information helps us understand how well-liked and significant the program is for students. The connection between the average enrollment percentage and the program's perceived importance provides valuable insights into its popularity and relevance within the education system.")
+# Create a two-column layout
+col1, col2= st.columns(2)
+
+
+# Create a treemap using Plotly Express
+with col1:
+# Selecting columns
+    df = df[['offered_program', 'average_percentage']]
+
+    # Grouping and sorting the data
+    grouped_df = df.groupby('offered_program').mean().sort_values(by='average_percentage', ascending=False)
+
+    # Creating a Plotly bar plot with purple color
+    fig = px.bar(grouped_df, x=grouped_df.index, y='average_percentage')
+    fig.update_traces(marker_color=[ "#3A0066", "#541380", "#6E1E9B", "#8838B5",
+    "#A252D0", "#BE6CEA", "#D886FF", "#F0A0FF",
+    "#FFB6FF", "#FFC8FF", "#FFDAFF"])  # Set the bar color to purple
+    fig.update_layout(xaxis_title="Offered Program", yaxis_title="Average Percentage")
+    st.plotly_chart(fig, use_container_width=True)
+
+with col2:
+    st.write("<br><br><br>", unsafe_allow_html=True)
+    st.write("Students who did well in their intermediate exams tend to prefer the BS Computer Science program over BBA for their bachelor's studies. In the master's programs, more students seem to prioritize enrolling in the MBA Evening program compared to the MBA Morning program. <br><br>This suggests that students who excel academically are drawn to these choices, showing that they consider these programs important and valuable for their education.", unsafe_allow_html=True)
+
+
+hide_streamlit_style = """
+            <style>
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
 
 
 # Display additional information if needed
